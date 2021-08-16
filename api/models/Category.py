@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=200, null=True, blank=True)
+    name = models.CharField(max_length=200, null=True)
     slug = models.SlugField()
 
     class Meta:

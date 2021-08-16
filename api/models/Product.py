@@ -7,7 +7,7 @@ from PIL import Image
 
 
 class Product(models.Model):
-    category = models.ForeignKey(Category, related_name='products', blank=True, null=True, on_delete= models.SET_NULL)
+    category = models.ForeignKey(Category, related_name='products', null=True, on_delete= models.SET_NULL)
     name =  models.CharField(max_length=200)
     description = models.TextField(blank=True, null=True)
     price = models.DecimalField(max_digits=9, decimal_places=2, null=True, blank=True)
@@ -23,7 +23,7 @@ class Product(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return f'/{self.slug}/'
+        return f'/{self.category.slug}/{self.slug}/'
 
     def get_image(self):
         if self.image:
@@ -43,16 +43,19 @@ class Product(models.Model):
             else:
                 return ''
 
-    def make_thubnail(self, image, size=(300,200)):
+    def make_thumbnail(self, image, size=(300,200)):
         img = Image.open(image)
-        img.convert('RGB')
+        
+        if img.mode != "RGB":
+           img = img.convert("RGB")
+
         img.thumbnail(size)
-
+        
         thumb_io = BytesIO()
-        img.save(thumb_io, 'JPEG', quality=85)
+        img.save(thumb_io, "JPEG", quality=85)
 
-        thumnail = File(thumb_io, name=image.name)
+        thumbnail = File(thumb_io, name=image.name)
 
-        return thumnail
+        return thumbnail
  
             
