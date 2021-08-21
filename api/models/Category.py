@@ -9,7 +9,7 @@ class Category(models.Model):
         ordering = ('name',)
 
 
-    def get_absolute_urel(self):
+    def get_absolute_url(self):
         return  f'/{self.slug}/'
     
     

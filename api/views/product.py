@@ -14,6 +14,7 @@ class LatestProductsList(APIView):
 
         return Response(serializer.data)
 
+
 class ProductDetail(APIView):
 
     def get_object(self, category_slug, product_slug):
