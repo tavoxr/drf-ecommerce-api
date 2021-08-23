@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-h6s*=r-jeo-l_-ka+9__k_eb3i#_0q4eacp1^-anf(&sf#a^(_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['drf-ecomm-api.herokuapp.com', '127.0.0.1']
 
 STRIPE_SECRET_KEY = "sk_test_51JR1v7FDHFihXWeHzzBGnw5rn6tSOgETXCREdjtxnDurCuyxGfD0kfx9KfBZSMJgRvjtH2jptJR6FyR8uCKQ5Tx000hr8eB3QL"
 # Application definition
@@ -55,6 +55,7 @@ CORS_ALLOWED_ORIGINS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -135,7 +136,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-
+STATIC_ROOT = BASE_DIR / 'media/'
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media/'
