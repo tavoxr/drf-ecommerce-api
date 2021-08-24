@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -89,6 +90,7 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+'''
 DATABASES = {
     'default': {
       'ENGINE': 'django.db.backends.postgresql',
@@ -99,6 +101,16 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+'''
+import dj_database_url
+
+DATABASES = {
+    'default': dj_database_url.config()
+}
+
+
+
 
 
 # Password validation
